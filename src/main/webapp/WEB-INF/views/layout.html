@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="head">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand shopName" href="/">茶湯會</a>
+                <div class="nav-collapse collapse">
+                    <p class="navbar-text pull-right">
+
+                    </p>
+                    <ul class="nav">
+                        <!-- <li><a href="/">Home</a></li> -->
+                        <li><a th:href="@{/showBasket}">Basket</a></li>
+                        <li><a th:href="@{/login}">Login</a></li>
+                        <!-- <li><a th:href="@{/administrator}">Admin</a></li> -->
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:fragment="banner">
+	<div class="banner">
+		<h3 class="shopName">茶湯會</h3>
+	</div>
+</div>
+
+<div th:fragment="left">
+    <div class="well sidebar-nav span3">
+        <ul class="nav nav-list">
+            <li class="nav-header">Navigation could go here</li>
+            <li><a href="http://www.gopivotal.com/">Pivotal, Inc</a></li>
+            <li><a href="http://www.springsource.org/spring-xd">Spring XD</a></li>
+            <li><a href="http://spring.io">Spring</a></li>
+        </ul>
+    </div>
+</div>
+
+<div th:fragment="foot">
+    <footer class="span12">
+        <p>&copy; 茶湯會 2014</p>
+    </footer>
+</div>
+
+<div th:fragment="popupOrder">
+	<form action="/addToBasket" method="POST">
+		<div class="row-fluid">		
+			<div class="span12">
+				<div class="orderHead">
+			        <h3 class="shopName">茶湯會</h3>
+			    </div>
+			</div>
+			<div>
+				<div class="span12">
+					<label class="span3">Name</label>
+					<label class="span9">翡翠檸檬</label>
+				</div>
+				<div>
+					<!-- Radio Button Fields -->
+					<!-- <ul>
+						<li th:each="ty : ${allTypes}">
+							<input type="radio" th:field="*{type}" th:value="${ty}" />
+							<label th:for="${#ids.prev('type')}" th:text="#{${'seedstarter.type.' + ty}}">Wireframe</label>
+						</li>
+					</ul> -->
+					<label class="span3">Sweetness</label>
+					<ul class="span9 strengthList">
+						<li>
+							<input type="radio" value="0" />
+							<label>無糖</label>
+						</li>
+						<li>
+							<input type="radio" value="2" />
+							<label>微糖</label>
+						</li>
+						<li>
+							<input type="radio" value="5" />
+							<label>半糖</label>
+						</li>
+						<li>
+							<input type="radio" value="8" />
+							<label>少糖</label>
+						</li>
+						<li>
+							<input type="radio" value="10" />
+							<label>正常</label>
+						</li>
+					</ul>
+				</div>
+				
+				<div>
+					<!-- Radio Button Fields -->
+					<!-- <ul>
+						<li th:each="ty : ${allTypes}">
+							<input type="radio" th:field="*{type}" th:value="${ty}" />
+							<label th:for="${#ids.prev('type')}" th:text="#{${'seedstarter.type.' + ty}}">Wireframe</label>
+						</li>
+					</ul> -->
+					<label class="span3">Ice cubes</label>
+					<ul class="span9 strengthList">
+						<li>
+							<input type="radio" value="1" />
+							<label>去冰</label>
+						</li>
+						<li>
+							<input type="radio" value="2" />
+							<label>少冰</label>
+						</li>
+						<li>
+							<input type="radio" value="3" />
+							<label>正常</label>
+						</li>
+						<li>
+							<input type="radio" value="4" />
+							<label>溫</label>
+						</li>
+						<li>
+							<input type="radio" value="5" />
+							<label>熱</label>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<label class="span3">Price</label>
+					<label class="span9">45</label>
+				</div>
+				<div>
+					<label class="span3">Decoration</label>
+					<ul class="span9 strengthList">
+						<li>
+							<input type="radio" value="1" />
+							<label>珍珠</label>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<label class="span3">Total</label>
+					<label class="span9">45</label>
+				</div>
+				<div>
+					<input class="btn" type="submit" value="Add to basket"/>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div th:fragment="shopBasket">
+	<div class="row-fluid">
+		<div class="offset1 span10" >
+			<div>Order List</div>
+			<table class="table table-striped">
+			    <thead>
+					<tr>
+					    <th>ID</th>
+					    <th>Name</th>
+					    <th>Sweetness</th>
+					    <th>Ice cubes</th>
+					    <th>Decoration</th>
+					    <th>Cost</th>
+					    <th>Action</th>
+					</tr>
+				</thead>
+	
+			    <tbody>
+				    <tr th:each="basketItem : ${basket.items}">
+				        <td th:text="${basketItem.id}"></td>
+				        <td th:text="${basketItem.name}"></td>
+				        <td th:text="${basketItem.cost}"></td>
+				        <td th:text="${basketItem.minutesToPrepare}"></td>
+				        <td>
+				            <form id="${itemFormId}" action="/removeFromBasket" method="POST">
+				                <input id="id" name="id" type="hidden" th:value="${basketItem.id}" />
+				                <input type="submit" value="Remove" />
+				            </form>
+				        </td>
+				    </tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div th:fragment="shoppingList">
+	<div class="row-fluid">
+		<div class="offset1 span10" >
+			<div>Order List</div>
+			<table class="table table-striped">
+			    <thead>
+					<tr>
+					    <th>ID</th>
+					    <th>Name</th>
+					    <th>Sweetness</th>
+					    <th>Ice cubes</th>
+					    <th>Decoration</th>
+					    <th>Cost</th>
+					</tr>
+				</thead>
+				<tbody>
+				    <tr>
+				        <td>D001</td>
+				        <td>翡翠檸檬</td>
+				        <td>無糖</td>
+				        <td>少冰</td>
+				        <td>珍珠</td>
+				        <td>50</td>
+				    </tr>
+				</tbody>
+			</table>
+			<table class="table table-striped">
+				<tr>
+					<td>Total cost: </td>
+					<td>50</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div> 
+
+
+</body>
+
+</html>
