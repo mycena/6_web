@@ -24,15 +24,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     //{!begin configure}
     http.authorizeUrls()
-        .antMatchers("/order/**").hasRole("USER")
-        .antMatchers("/checkout").hasRole("USER")
+//        .antMatchers("/order/**").hasRole("USER")
+//        .antMatchers("/checkout").hasRole("USER")
         //.antMatchers("/login").permitAll()
         .anyRequest().anonymous()
         .and()
         //This will generate a login form if none is supplied.
         .formLogin();
-//           .loginPage("/login")
-//            .and();
+ /*          .loginPage("/login")
+            .and();*/
     
     //{!end configure}
   }
