@@ -37,7 +37,7 @@
 	<div class="container-fluid">
 		<h3 class="offset1">This is checkout page, please do check your drinks and fit your information below</h3>
 		<div class="row-fluid">
-			<div class="offset1 span9">
+			<div class="offset1 span10">
 				<a class="btn btn-inverse pull-right" th:href="@{/}">Continue shopping</a>
 			</div>
 		</div>
@@ -57,14 +57,14 @@
             	<div class="control-group">
 					<label class="control-label" for="name">Name</label>
 					<div class="controls">
-						<input type="text" th:field="*{name}" />
+						<input type="text" th:field="*{name}" placeholder="name"/>
 					</div>
 					<div th:if="${#fields.hasErrors('name')}"><p th:errors="*{name}">Incorrect Name</p></div>
 				</div>
 				<div class="control-group">
 					<!-- <label class="control-label" for="phone">Contact number</label>
 					<div class="controls">
-						<input type="text" th:field="*{phone}" />
+						<input type="text" th:field="*{phone}" placeholder="Number"/>
 					</div>
 					<div th:if="${#fields.hasErrors('phone')}"><p th:errors="*{phone}">Incorrect Number</p></div> -->
 					<label class="control-label" for="inputEmail">Contact number</label>
@@ -75,14 +75,14 @@
 				<div class="control-group">
 					<label class="control-label" for="address1">Deliver address</label>
 					<div class="controls">
-						<input type="text" th:field="*{address1}" />
+						<input type="text" th:field="*{address1}" placeholder="address"/>
 					</div>
 					<div th:if="${#fields.hasErrors('address1')}"><p th:errors="*{address1}">Incorrect Address</p></div>
 				</div>
                 <div class="control-group">
 					<label class="control-label" for="postcode">Post code</label>
 					<div class="controls">
-						<input type="text" th:field="*{postcode}" />
+						<input type="text" th:field="*{postcode}" placeholder="postcode"/>
 					</div>
 					<div th:if="${#fields.hasErrors('postcode')}"><p th:errors="*{postcode}">Postcode Error</p></div>
 				</div>

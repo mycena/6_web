@@ -56,6 +56,7 @@
 	                </tr>
                 </thead>
                 <tbody>
+<!-- 原始檔案為直接按"add to basket" 就可加入shopping cart, 但因為我們有增甜度,冰塊,珍珠的選項 所以用<a>去做popup的動作 並在popup中的"Add to basket"來增加使用者的order -->
 	               	<tr th:each="item,status : ${menuItems}">
 	                    <td th:text="${item.id}"></td>
 	                    <td th:text="${item.name}"></td>
@@ -104,6 +105,7 @@
 						</td>
 					</tr>
 	                <tr>
+<!--  How many cups and how much the user order -->
 	                	<table>
 							<tr>
 							  <th>Item: </th>

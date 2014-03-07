@@ -169,8 +169,8 @@
 					    <th>Sweetness</th>
 					    <th>Ice cubes</th>
 					    <th>Decoration</th>
-					    <th>Cost</th>
 					    <th>Action</th>
+					    <th>Cost</th>
 					</tr>
 				</thead>
 	
@@ -178,8 +178,11 @@
 				    <tr th:each="basketItem : ${basket.items}">
 				        <td th:text="${basketItem.id}"></td>
 				        <td th:text="${basketItem.name}"></td>
-				        <td th:text="${basketItem.cost}"></td>
+				        <td>無糖</td>
+				        <td>少冰</td>
+				        <td>珍珠</td>
 				        <td th:text="${basketItem.minutesToPrepare}"></td>
+				        <td th:text="${basketItem.cost}"></td>
 				        <td>
 				            <form id="${itemFormId}" action="/removeFromBasket" method="POST">
 				                <input id="id" name="id" type="hidden" th:value="${basketItem.id}" />
@@ -205,20 +208,23 @@
 					    <th>Sweetness</th>
 					    <th>Ice cubes</th>
 					    <th>Decoration</th>
+					    <th>Action</th>
 					    <th>Cost</th>
 					</tr>
 				</thead>
 				<tbody>
-				    <tr>
-				        <td>D001</td>
-				        <td>翡翠檸檬</td>
+				    <tr th:each="basketItem : ${basket.items}">
+				        <td th:text="${basketItem.id}"></td>
+				        <td th:text="${basketItem.name}"></td>
 				        <td>無糖</td>
 				        <td>少冰</td>
 				        <td>珍珠</td>
-				        <td>50</td>
+				        <td th:text="${basketItem.minutesToPrepare}"></td>
+				        <td th:text="${basketItem.cost}"></td>
 				    </tr>
 				</tbody>
 			</table>
+<!-- 總金額顯示 -->
 			<table class="table table-striped">
 				<tr>
 					<td>Total cost: </td>
